@@ -6,7 +6,7 @@ but fully implemented by your code without the select tag.
 *Usage example:*
 
 
-> const dropdown = new Dropdown('dropdown', {
+> const dropdown = new Dropdown('#dropdown', {
  > items: [
  >   {label: 'Москва', id: 'msk'},
  >   {label: 'Санкт-Петербург', id: 'spb'},
