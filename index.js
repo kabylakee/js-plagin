@@ -8,10 +8,12 @@ class Dropdown {
         this.$elem.addEventListener('click', event => {
             if (event.target.classList.contains('dropdown__label')) {
                this.$elem.classList.contains("open") ? this.close() : this.open();
+            } else if (event.target.tagName.toLowerCase() === "li") {
+                this.select(event.target.dataset.id);
             }
         });
 
-        const itemsHTML = this.items.map((item) => `<li>${item.label}</li>`).join(' ');
+        const itemsHTML = this.items.map((item) => `<li data-id="${item.id}">${item.label}</li>`).join(' ');
 
         this.$elem.querySelector('.dropdown__menu').insertAdjacentHTML('afterbegin', itemsHTML);
     }
@@ -22,6 +24,12 @@ class Dropdown {
 
     close() {
         this.$elem.classList.remove("open");
+    }
+
+    select(id) {
+        const item = this.items.find(item => item.id === id);
+        this.$elem.querySelector(".dropdown__label").textContent = item.label;
+        this.close();
     }
 }
 
